@@ -1,0 +1,543 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>APD Appendix-3 Converter | Agenda Process Design</title>
+<meta name="description" content="Convert your APD bot output into a professionally formatted Appendix-3 Word document. Built on the APD v1.0 methodology by Tony Mann.">
+<style>
+:root{
+  --navy:#1F4E79;--mid:#2C5F8A;--steel:#4A7BAF;--light-steel:#7BAFD4;
+  --off:#F8F9FC;--lg:#E8ECF2;--mg:#8A9BB0;--dark:#1A2332;
+  --success:#1F6B2E;--amber:#7F4F00;--amber-bg:#FFF8E6;--amber-border:#FFE0A0;
+  --o1:#C6EFCE;--o2:#FFEB9C;--o3:#FCE4D6;--review:#E2EFDA;--note:#DAEEF3;--opening:#EEF2F7;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:Georgia,serif;background:var(--off);color:var(--dark);min-height:100vh}
+
+/* ── HEADER ── */
+.hdr{background:var(--navy);padding:0}
+.hdr-inner{max-width:1100px;margin:0 auto;padding:28px 32px;display:flex;align-items:center;justify-content:space-between}
+.hdr-brand h1{font-size:26px;color:#fff;font-weight:700;letter-spacing:-.3px}
+.hdr-brand p{font-size:13px;color:rgba(255,255,255,.55);margin-top:3px;font-family:Arial,sans-serif}
+.hdr-badge{background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.22);color:rgba(255,255,255,.8);font-size:11px;font-weight:700;padding:5px 13px;border-radius:16px;letter-spacing:.8px;text-transform:uppercase;font-family:Arial,sans-serif}
+
+/* ── HERO ── */
+.hero{background:linear-gradient(160deg,var(--navy) 0%,var(--mid) 60%,var(--steel) 100%);padding:56px 32px 48px}
+.hero-inner{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1fr;gap:48px;align-items:center}
+.hero-left h2{font-size:34px;color:#fff;line-height:1.25;margin-bottom:16px}
+.hero-left h2 em{font-style:italic;color:var(--light-steel)}
+.hero-left p{font-size:15px;color:rgba(255,255,255,.75);line-height:1.7;margin-bottom:24px;font-family:Arial,sans-serif}
+.hero-cta{display:inline-flex;align-items:center;gap:8px;background:#fff;color:var(--navy);font-family:Arial,sans-serif;font-size:14px;font-weight:700;padding:13px 26px;border-radius:8px;border:none;cursor:pointer;transition:all .2s;text-decoration:none}
+.hero-cta:hover{background:var(--lg);transform:translateY(-2px);box-shadow:0 6px 18px rgba(0,0,0,.2)}
+.hero-cta span{font-size:18px}
+.hero-right{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.15);border-radius:12px;padding:24px}
+.hero-right h3{font-size:14px;font-weight:700;color:rgba(255,255,255,.6);text-transform:uppercase;letter-spacing:.8px;margin-bottom:16px;font-family:Arial,sans-serif}
+.apd-pill{display:inline-flex;align-items:center;gap:7px;background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);color:rgba(255,255,255,.85);font-family:Arial,sans-serif;font-size:12px;padding:5px 11px;border-radius:20px;margin:3px}
+.apd-pill .dot{width:8px;height:8px;border-radius:50%;background:var(--light-steel)}
+
+/* ── WHAT IS APD ── */
+.what{background:#fff;border-bottom:1px solid var(--lg)}
+.what-inner{max-width:1100px;margin:0 auto;padding:48px 32px}
+.section-label{font-family:Arial,sans-serif;font-size:11px;font-weight:700;color:var(--steel);text-transform:uppercase;letter-spacing:1px;margin-bottom:10px}
+.what-inner h2{font-size:28px;color:var(--navy);margin-bottom:20px;line-height:1.3}
+.what-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;align-items:start}
+.what-text p{font-size:15px;line-height:1.8;color:#333;margin-bottom:14px;font-family:Arial,sans-serif}
+.what-text p strong{color:var(--navy)}
+.what-text a{color:var(--steel);text-decoration:none;font-family:Arial,sans-serif;font-weight:600}
+.what-text a:hover{text-decoration:underline}
+.what-cards{display:flex;flex-direction:column;gap:12px}
+.what-card{background:var(--off);border:1px solid var(--lg);border-radius:10px;padding:16px 18px;border-left:4px solid var(--steel)}
+.what-card h4{font-size:13px;font-weight:700;color:var(--navy);margin-bottom:5px;font-family:Arial,sans-serif}
+.what-card p{font-size:13px;color:#555;line-height:1.6;font-family:Arial,sans-serif}
+.cert-block{margin-top:24px;background:linear-gradient(135deg,var(--navy),var(--mid));border-radius:10px;padding:20px 22px;color:#fff}
+.cert-block h4{font-size:14px;font-weight:700;margin-bottom:7px;font-family:Arial,sans-serif}
+.cert-block p{font-size:13px;line-height:1.6;opacity:.85;margin-bottom:12px;font-family:Arial,sans-serif}
+.cert-link{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.25);color:#fff;font-family:Arial,sans-serif;font-size:12px;font-weight:600;padding:7px 14px;border-radius:6px;text-decoration:none;transition:background .2s}
+.cert-link:hover{background:rgba(255,255,255,.25)}
+
+/* ── HOW IT WORKS ── */
+.how{background:var(--off);border-bottom:1px solid var(--lg)}
+.how-inner{max-width:1100px;margin:0 auto;padding:48px 32px}
+.how-inner h2{font-size:26px;color:var(--navy);margin-bottom:28px}
+.how-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:20px}
+.how-step{background:#fff;border:1px solid var(--lg);border-radius:10px;padding:20px;position:relative}
+.how-num{width:32px;height:32px;border-radius:50%;background:var(--navy);color:#fff;font-family:Arial,sans-serif;font-size:14px;font-weight:700;display:flex;align-items:center;justify-content:center;margin-bottom:12px}
+.how-step h4{font-size:14px;font-weight:700;color:var(--navy);margin-bottom:7px;font-family:Arial,sans-serif}
+.how-step p{font-size:13px;color:#555;line-height:1.6;font-family:Arial,sans-serif}
+.how-arrow{position:absolute;right:-14px;top:32px;font-size:18px;color:var(--mg);z-index:1}
+
+/* ── MAIN TOOL ── */
+.tool{background:#fff}
+.tool-inner{max-width:1060px;margin:0 auto;padding:48px 32px}
+.tool-inner>h2{font-size:26px;color:var(--navy);margin-bottom:8px}
+.tool-inner>p{font-size:14px;color:var(--mg);margin-bottom:28px;font-family:Arial,sans-serif}
+
+/* steps */
+.steps{display:flex;margin-bottom:24px;border-radius:8px;overflow:hidden;box-shadow:0 1px 4px rgba(0,0,0,.08)}
+.step{flex:1;display:flex;align-items:center;gap:9px;padding:12px 16px;background:var(--lg);border-right:2px solid var(--off)}
+.step:last-child{border-right:none}
+.step.active{background:var(--navy)}
+.step.done{background:var(--steel)}
+.sn{width:22px;height:22px;border-radius:50%;background:rgba(255,255,255,.25);display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:700;color:#fff;flex-shrink:0;font-family:Arial,sans-serif}
+.step:not(.active):not(.done) .sn{background:var(--mg)}
+.sl{font-size:12px;font-weight:600;color:#fff;font-family:Arial,sans-serif}
+.step:not(.active):not(.done) .sl{color:var(--mg)}
+
+/* panels */
+.panel{background:#fff;border:1px solid var(--lg);border-radius:12px;overflow:hidden;display:none}
+.panel.visible{display:block}
+.ph{background:var(--navy);padding:16px 22px;display:flex;align-items:center;gap:11px}
+.pi{font-size:20px}
+.ph h3{font-size:18px;color:#fff;font-weight:700;font-family:Arial,sans-serif}
+.ph p{font-size:12px;color:rgba(255,255,255,.6);margin-top:2px;font-family:Arial,sans-serif}
+.pb{padding:22px}
+
+/* instructions */
+.instr{background:var(--off);border:1px solid var(--lg);border-radius:8px;padding:14px 16px;margin-bottom:16px}
+.instr h4{font-size:11px;font-weight:700;color:var(--navy);margin-bottom:9px;text-transform:uppercase;letter-spacing:.5px;font-family:Arial,sans-serif}
+.is{display:flex;gap:9px;margin-bottom:6px;align-items:flex-start}
+.in{width:19px;height:19px;border-radius:50%;background:var(--navy);color:#fff;font-size:10px;font-weight:700;display:flex;align-items:center;justify-content:center;flex-shrink:0;margin-top:1px;font-family:Arial,sans-serif}
+.it{font-size:13px;line-height:1.5;font-family:Arial,sans-serif}
+
+/* textarea */
+textarea{width:100%;height:280px;border:2px dashed var(--lg);border-radius:8px;padding:12px;font-family:Arial,sans-serif;font-size:13px;line-height:1.6;color:var(--dark);resize:vertical;background:var(--off)}
+textarea:focus{outline:none;border-color:var(--steel);background:#fff}
+textarea::placeholder{color:var(--mg)}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;gap:7px;padding:10px 20px;border-radius:8px;font-family:Arial,sans-serif;font-size:13px;font-weight:600;cursor:pointer;border:none;transition:all .2s}
+.bp{background:var(--navy);color:#fff}
+.bp:hover{background:var(--mid);transform:translateY(-1px)}
+.bs{background:var(--lg);color:var(--dark)}
+.bs:hover{background:#d0d8e8}
+.bd{background:var(--success);color:#fff;font-size:14px;padding:12px 26px}
+.bd:hover{background:#175522;transform:translateY(-1px);box-shadow:0 5px 14px rgba(31,107,46,.25)}
+.br{display:flex;gap:10px;margin-top:14px;align-items:center;flex-wrap:wrap}
+
+/* status */
+.sb{display:flex;align-items:center;gap:7px;padding:9px 12px;border-radius:8px;margin-top:10px;font-size:13px;font-weight:500;font-family:Arial,sans-serif}
+.sb.err{background:#FDEAEA;color:#C00000}
+.sb.ok{background:#EEF7EE;color:#375623}
+
+/* loading */
+.ld{display:none;align-items:center;gap:8px;color:var(--mg);font-size:13px;font-family:Arial,sans-serif}
+.ld.vis{display:flex}
+.sp{width:15px;height:15px;border:2px solid var(--lg);border-top-color:var(--navy);border-radius:50%;animation:spin .7s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+
+/* stats */
+.sr{display:flex;gap:10px;margin:14px 0}
+.sc{flex:1;background:var(--off);border:1px solid var(--lg);border-radius:8px;padding:10px;text-align:center}
+.sn2{font-size:22px;font-weight:700;color:var(--navy);line-height:1;font-family:Arial,sans-serif}
+.sl2{font-size:10px;color:var(--mg);margin-top:2px;text-transform:uppercase;letter-spacing:.5px;font-family:Arial,sans-serif}
+
+/* aim */
+.ad{background:linear-gradient(135deg,var(--navy),var(--mid));color:#fff;padding:12px 16px;border-radius:8px;margin-bottom:12px}
+.al{font-size:10px;text-transform:uppercase;letter-spacing:1px;opacity:.7;margin-bottom:2px;font-family:Arial,sans-serif}
+.at{font-size:14px;font-style:italic;font-weight:600}
+
+/* preview table */
+.pc{border:1px solid var(--lg);border-radius:8px;overflow:hidden}
+.pt{background:var(--lg);padding:8px 13px;display:flex;align-items:center;justify-content:space-between}
+.pt span{font-size:11px;font-weight:600;color:var(--mg);text-transform:uppercase;letter-spacing:.5px;font-family:Arial,sans-serif}
+.ps{max-height:420px;overflow-y:auto;padding:12px;background:var(--off)}
+table.at2{width:100%;border-collapse:collapse;font-size:11px}
+table.at2 th{background:var(--navy);color:#fff;padding:7px 9px;text-align:left;font-weight:700;font-size:11px;font-family:Arial,sans-serif}
+table.at2 td{padding:7px 9px;border:1px solid #C8D4E0;vertical-align:top;line-height:1.5;font-family:Arial,sans-serif}
+.ro td{background:var(--opening)}
+.r1 td{background:var(--o1)}
+.r2 td{background:var(--o2)}
+.r3 td,.r4 td{background:var(--o3)}
+.rr td{background:var(--review)}
+.rx td{background:var(--note)}
+.rw td{background:#fff}
+
+/* format note */
+.fn{background:var(--amber-bg);border:1px solid var(--amber-border);border-radius:8px;padding:12px 14px;margin:12px 0;font-size:13px;color:var(--amber);line-height:1.6;font-family:Arial,sans-serif}
+.fn strong{display:block;margin-bottom:2px}
+
+/* download area */
+.da{text-align:center;padding:32px 20px}
+.dai{font-size:48px;margin-bottom:12px}
+.da h3{font-size:20px;color:var(--navy);margin-bottom:6px;font-weight:700;font-family:Arial,sans-serif}
+.da p{font-size:13px;color:var(--mg);margin-bottom:16px;max-width:400px;margin-left:auto;margin-right:auto;line-height:1.6;font-family:Arial,sans-serif}
+
+/* ── FOOTER ── */
+.ftr{background:var(--navy);color:rgba(255,255,255,.55);font-family:Arial,sans-serif;font-size:12px;padding:28px 32px;text-align:center}
+.ftr a{color:rgba(255,255,255,.7);text-decoration:none}
+.ftr a:hover{color:#fff}
+.ftr-inner{max-width:1100px;margin:0 auto}
+
+/* ── RESPONSIVE ── */
+@media(max-width:768px){
+  .hero-inner,.what-grid,.how-steps{grid-template-columns:1fr}
+  .how-arrow{display:none}
+  .hdr-inner{flex-direction:column;gap:12px;text-align:center}
+  .hero-left h2{font-size:26px}
+}
+</style>
+</head>
+<body>
+
+<!-- HEADER -->
+<div class="hdr">
+  <div class="hdr-inner">
+    <div class="hdr-brand">
+      <h1>APD Appendix-3 Converter</h1>
+      <p>Agenda Process Design — Plain Text to Formatted Word Document</p>
+    </div>
+    <div class="hdr-badge">APD v1.0</div>
+  </div>
+</div>
+
+<!-- HERO -->
+<div class="hero">
+  <div class="hero-inner">
+    <div class="hero-left">
+      <h2>Turn your APD bot output into a <em>professional Agenda Process</em></h2>
+      <p>Paste the plain-text output from any APD bot. This tool automatically formats it into a colour-coded, landscape Appendix-3 table — ready to download and open in Microsoft Word.</p>
+      <a href="#tool" class="hero-cta"><span>⚡</span> Convert My Output</a>
+    </div>
+    <div class="hero-right">
+      <h3>APD Tools included in your design</h3>
+      <div>
+        <span class="apd-pill"><span class="dot"></span>Braindumping</span>
+        <span class="apd-pill"><span class="dot"></span>Clustering</span>
+        <span class="apd-pill"><span class="dot"></span>SCA</span>
+        <span class="apd-pill"><span class="dot"></span>Is / Is Not</span>
+        <span class="apd-pill"><span class="dot"></span>Snap</span>
+        <span class="apd-pill"><span class="dot"></span>Four Box Model</span>
+        <span class="apd-pill"><span class="dot"></span>Matrix Charting</span>
+        <span class="apd-pill"><span class="dot"></span>Dots</span>
+        <span class="apd-pill"><span class="dot"></span>Force Field</span>
+        <span class="apd-pill"><span class="dot"></span>Fishbone</span>
+        <span class="apd-pill"><span class="dot"></span>WWISH</span>
+        <span class="apd-pill"><span class="dot"></span>Action Planning</span>
+        <span class="apd-pill"><span class="dot"></span>Process Iceberg® Review</span>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- WHAT IS APD -->
+<div class="what">
+  <div class="what-inner">
+    <div class="section-label">About the Methodology</div>
+    <h2>What is Agenda Process Design?</h2>
+    <div class="what-grid">
+      <div class="what-text">
+        <p><strong>Agenda Process Design (APD)</strong> is a disciplined methodology for designing how people think together in meetings, workshops, and decision sessions. It separates <strong>what must be achieved</strong> (Task) from <strong>how people will think together to achieve it</strong> (Process).</p>
+        <p>Developed by <strong>Tony Mann</strong> and published in <em>Facilitation — Develop Your Expertise</em> (APMG, 2025), APD gives Facilitators a structured toolkit of named tools — each designed to perform a specific cognitive function at the right point in a meeting.</p>
+        <p>The result is meetings that produce <strong>clarity, commitment, and disciplined action</strong> — rather than wasted time, unresolved conflict, or decisions that don't stick.</p>
+        <p>This tool uses the APD bot to design your Agenda Process, then converts the output into a professional <strong>Appendix-3 formatted table</strong> — the canonical APD output format used by certified practitioners worldwide.</p>
+        <p>New to APD? <a href="https://apmg-international.com" target="_blank">Find out about APMG certification →</a></p>
+      </div>
+      <div>
+        <div class="what-cards">
+          <div class="what-card">
+            <h4>🔴 RED Thinking — What must be achieved</h4>
+            <p>Establish the Aim, Objectives, Tasks, and Degree of Uncertainty before designing any process. RED is sacrosanct — no tools, no formats, no steps until RED is complete.</p>
+          </div>
+          <div class="what-card">
+            <h4>🟢 GREEN Thinking — How people will think together</h4>
+            <p>Design the process using named APD tools in the correct sequence. Each tool performs a specific cognitive function — data generation, meaning stabilisation, diagnosis, evaluation, or action.</p>
+          </div>
+          <div class="what-card">
+            <h4>📋 Appendix-3 — The Agenda Process table</h4>
+            <p>The canonical output format: Objective | Time | Task | Process | Preparation. Every step specified in sufficient detail for a Facilitator or Tech Host to run without interpretation.</p>
+          </div>
+        </div>
+        <div class="cert-block">
+          <h4>Become a Certified APD Practitioner</h4>
+          <p>APMG International offers Foundation and Practitioner certification in Facilitation and Agenda Process Design. Recognised by Approved Training Organisations worldwide.</p>
+          <a href="https://apmg-international.com" target="_blank" class="cert-link">&#127891; View APMG Certification →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- HOW IT WORKS -->
+<div class="how">
+  <div class="how-inner">
+    <div class="section-label">Using this tool</div>
+    <h2>How it works</h2>
+    <div class="how-steps">
+      <div class="how-step">
+        <div class="how-num">1</div>
+        <h4>Design with the APD bot</h4>
+        <p>Use the APD bot (on any platform) to work through Phase 0, RED, and GREEN. The bot guides you to a complete Agenda Process.</p>
+        <div class="how-arrow">→</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">2</div>
+        <h4>Copy the output</h4>
+        <p>Copy the entire plain-text Appendix-3 output from the bot — including the Aim, all Objectives, and the full table.</p>
+        <div class="how-arrow">→</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">3</div>
+        <h4>Paste and preview</h4>
+        <p>Paste into the converter below. It automatically detects your Aim, colour-codes each Objective, and shows a live preview.</p>
+        <div class="how-arrow">→</div>
+      </div>
+      <div class="how-step">
+        <div class="how-num">4</div>
+        <h4>Download your document</h4>
+        <p>Download a formatted RTF document — opens directly in Microsoft Word, Google Docs, or LibreOffice. No plugins needed.</p>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOOL -->
+<div class="tool" id="tool">
+  <div class="tool-inner">
+    <div class="section-label">The Converter</div>
+    <h2>Convert Your APD Output</h2>
+    <p>Paste your plain-text APD bot output below — the tool handles the rest.</p>
+
+    <div class="steps">
+      <div class="step active" id="s1"><div class="sn">1</div><div class="sl">Paste Output</div></div>
+      <div class="step" id="s2"><div class="sn">2</div><div class="sl">Preview Table</div></div>
+      <div class="step" id="s3"><div class="sn">3</div><div class="sl">Download</div></div>
+    </div>
+
+    <!-- Panel 1 -->
+    <div class="panel visible" id="panel1">
+      <div class="ph"><div class="pi">📋</div><div><h3>Paste Your APD Output</h3><p>Copy the full output from your APD bot and paste below</p></div></div>
+      <div class="pb">
+        <div class="instr"><h4>Instructions</h4>
+          <div class="is"><div class="in">1</div><div class="it">Complete your Agenda Process Design in the APD bot (any platform — ChatGPT, Claude, or other)</div></div>
+          <div class="is"><div class="in">2</div><div class="it">Copy the entire output — Overall Aim, all Objectives, and the full table content</div></div>
+          <div class="is"><div class="in">3</div><div class="it">Paste below and click <strong>Parse &amp; Preview</strong></div></div>
+          <div class="is"><div class="in">4</div><div class="it">Review the formatted table then download — opens directly in Microsoft Word</div></div>
+        </div>
+        <textarea id="rawInput" placeholder="Paste your APD bot output here...&#10;&#10;The tool automatically detects your Overall Aim and colour-codes each Objective.&#10;Supports pipe-table format (| col | col |) as produced by ChatGPT and other platforms.&#10;&#10;If your output was split across multiple bot messages, paste all sections together."></textarea>
+        <div class="br">
+          <button class="btn bp" onclick="parseAndPreview()">⚡ Parse &amp; Preview</button>
+          <button class="btn bs" onclick="loadSample()">Load sample output</button>
+          <div class="ld" id="l1"><div class="sp"></div><span>Parsing...</span></div>
+        </div>
+        <div id="st1"></div>
+      </div>
+    </div>
+
+    <!-- Panel 2 -->
+    <div class="panel" id="panel2">
+      <div class="ph"><div class="pi">👁️</div><div><h3>Preview Your Appendix-3</h3><p>Review the parsed table before downloading</p></div></div>
+      <div class="pb">
+        <div class="ad"><div class="al">Overall Aim</div><div class="at" id="aimTxt">—</div></div>
+        <div class="sr" id="statsRow"></div>
+        <div class="pc">
+          <div class="pt"><span>Appendix-3 Preview</span><span id="rowCnt"></span></div>
+          <div class="ps">
+            <table class="at2">
+              <thead><tr>
+                <th style="width:12%">Objective</th><th style="width:7%">Time</th>
+                <th style="width:15%">Task / Activity</th><th style="width:38%">Process</th>
+                <th style="width:28%">Preparation</th>
+              </tr></thead>
+              <tbody id="prevBody"></tbody>
+            </table>
+          </div>
+        </div>
+        <div class="fn"><strong>📄 Download format</strong>Downloads as an <strong>RTF file</strong> — opens natively in Microsoft Word, Google Docs, and LibreOffice with full colour-coded table formatting and landscape layout. No plugins or special software needed.</div>
+        <div class="br">
+          <button class="btn bd" onclick="doDownload()">⬇️ Download Formatted Document</button>
+          <button class="btn bs" onclick="goBack()">← Back</button>
+          <div class="ld" id="l2"><div class="sp"></div><span>Building document...</span></div>
+        </div>
+        <div id="st2"></div>
+      </div>
+    </div>
+
+    <!-- Panel 3 -->
+    <div class="panel" id="panel3">
+      <div class="ph"><div class="pi">✅</div><div><h3>Document Downloaded</h3><p>Your formatted Appendix-3 is ready</p></div></div>
+      <div class="pb">
+        <div class="da">
+          <div class="dai">📄</div>
+          <h3>Appendix-3 Agenda Process</h3>
+          <p>Your document has downloaded. Open it in Microsoft Word, Google Docs, or LibreOffice. The table is fully colour-coded by Objective with landscape layout and all Preparation notes included.</p>
+          <button class="btn bd" id="dlBtn">⬇️ Download Again</button>
+          <div style="margin-top:13px"><button class="btn bs" onclick="startAgain()">Convert another document</button></div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+<!-- FOOTER -->
+<div class="ftr">
+  <div class="ftr-inner">
+    <p>APD Appendix-3 Converter &nbsp;·&nbsp; Built on APD v1.0 methodology &nbsp;·&nbsp; <em>Facilitation — Develop Your Expertise</em>, Tony Mann (APMG, 2025)</p>
+    <p style="margin-top:6px"><a href="https://apmg-international.com" target="_blank">APMG International</a> &nbsp;·&nbsp; Facilitation Certification &nbsp;·&nbsp; Foundation &amp; Practitioner</p>
+  </div>
+</div>
+
+<script>
+var parsed={aim:'',rows:[]};
+var lastBlob=null,lastFN='';
+
+function showPanel(n){
+  [1,2,3].forEach(function(i){
+    document.getElementById('panel'+i).classList.toggle('visible',i===n);
+    var s=document.getElementById('s'+i);
+    s.classList.remove('active','done');
+    if(i===n)s.classList.add('active');
+    else if(i<n)s.classList.add('done');
+  });
+}
+function goBack(){showPanel(1);}
+function startAgain(){document.getElementById('rawInput').value='';showPanel(1);}
+function setSt(id,type,msg){document.getElementById(id).innerHTML=msg?'<div class="sb '+type+'">'+msg+'</div>':'';}
+
+function clean(t){
+  return(t||'').replace(/\\\|/g,'|').replace(/\\'/g,"'").replace(/\*\*/g,'').replace(/\*/g,'')
+    .replace(/---/g,'\u2014').replace(/--/g,'\u2013').replace(/\\\\/g,'').trim();
+}
+
+function parseRaw(raw){
+  var lines=raw.split('\n').map(function(l){return l.trim();});
+  var aim='',rows=[];
+  for(var i=0;i<lines.length;i++){
+    var m=lines[i].match(/(?:Overall\s+)?Aim\s*[:\-\u2013\u2014*]{1,3}\s*(.+)/i);
+    if(m){aim=clean(m[1]);break;}
+  }
+  var pl=lines.filter(function(l){return(l.startsWith('|')||l.startsWith('\\|'))&&!l.match(/^[\|\\|\-\s]+$/);});
+  for(var j=0;j<pl.length;j++){
+    var line=pl[j].replace(/\\\|/g,'\u00A7').replace(/\|/g,'\u00A7');
+    var cells=line.split('\u00A7').map(function(c){return clean(c);}).filter(function(c,idx,a){return idx>0&&idx<a.length-1;});
+    if(cells.length<2)continue;
+    if(cells[0].match(/^-+$/))continue;
+    if(cells[0].toLowerCase().indexOf('objective')>-1&&cells.length===5&&cells[1].toLowerCase().indexOf('time')>-1)continue;
+    if(cells[0].toLowerCase().indexOf('section')>-1&&cells[1].toLowerCase().indexOf('time')>-1)continue;
+    if(cells[0].toLowerCase().indexOf('action')>-1&&cells[1].toLowerCase().indexOf('owner')>-1)continue;
+    rows.push({objective:cells[0]||'',time:cells[1]||'',task:cells[2]||'',process:cells[3]||'',preparation:cells[4]||''});
+  }
+  return{aim:aim,rows:rows};
+}
+
+function getColor(text){
+  var t=(text||'').toUpperCase();
+  if(t.indexOf('SESSION')>-1||t.indexOf('OPENING')>-1||t.indexOf('WELCOME')>-1)return'o';
+  if(t.indexOf('CLOSING')>-1||t.indexOf('REVIEW')>-1||t.indexOf('ICEBERG')>-1)return'r';
+  if(t.indexOf('OPTIONAL')>-1||t.indexOf('EXTENSION')>-1||t.indexOf('DECISION')>-1)return'x';
+  if(t.match(/\bO4\b|OBJECTIVE\s*4/)&&t.length>3)return'4';
+  if(t.match(/\bO3\b|OBJECTIVE\s*3/)&&t.length>3)return'3';
+  if(t.match(/\bO2\b|OBJECTIVE\s*2/)&&t.length>3)return'2';
+  if(t.match(/\bO1\b|OBJECTIVE\s*1/)&&t.length>3)return'1';
+  return null;
+}
+var cClass={'o':'ro','1':'r1','2':'r2','3':'r3','4':'r4','r':'rr','x':'rx',null:'rw'};
+var rtfBg={'o':7,'1':2,'2':3,'3':4,'4':4,'r':5,'x':6,null:8};
+
+function parseAndPreview(){
+  var raw=document.getElementById('rawInput').value.trim();
+  if(!raw){setSt('st1','err','Please paste your APD output first.');return;}
+  document.getElementById('l1').classList.add('vis');setSt('st1','','');
+  setTimeout(function(){
+    parsed=parseRaw(raw);
+    if(parsed.rows.length===0){
+      document.getElementById('l1').classList.remove('vis');
+      setSt('st1','err','Could not find table rows. Make sure you copied the full APD output including the pipe table (| col | col |).');
+      return;
+    }
+    document.getElementById('aimTxt').textContent=parsed.aim||'(Aim not detected — check your output includes "Overall Aim:")';
+    var objs=parsed.rows.filter(function(r){return r.objective&&r.objective.length>3&&!r.objective.match(/^-+$/);}).length;
+    document.getElementById('statsRow').innerHTML=
+      '<div class="sc"><div class="sn2">'+objs+'</div><div class="sl2">Objectives</div></div>'+
+      '<div class="sc"><div class="sn2">'+parsed.rows.length+'</div><div class="sl2">Rows</div></div>'+
+      '<div class="sc"><div class="sn2">'+parsed.rows.filter(function(r){return r.process&&r.process.length>5;}).length+'</div><div class="sl2">Process Steps</div></div>'+
+      '<div class="sc"><div class="sn2">'+parsed.rows.filter(function(r){return r.preparation&&r.preparation.length>5;}).length+'</div><div class="sl2">Prep Notes</div></div>';
+    document.getElementById('rowCnt').textContent=parsed.rows.length+' rows parsed';
+    var tbody=document.getElementById('prevBody');tbody.innerHTML='';
+    var curC=null;
+    parsed.rows.forEach(function(row){
+      var tr=document.createElement('tr');
+      if(row.objective&&row.objective.length>3){var c=getColor(row.objective);if(c)curC=c;}
+      tr.className=cClass[curC]||'rw';
+      ['objective','time','task','process','preparation'].forEach(function(k){
+        var td=document.createElement('td');td.textContent=row[k]||'';tr.appendChild(td);
+      });
+      tbody.appendChild(tr);
+    });
+    document.getElementById('l1').classList.remove('vis');
+    showPanel(2);
+  },500);
+}
+
+function escRTF(s){
+  return(s||'').replace(/\\/g,'\\\\').replace(/\{/g,'\\{').replace(/\}/g,'\\}')
+    .replace(/[^\x00-\x7F]/g,function(c){return'\\u'+c.charCodeAt(0)+'?';});
+}
+
+function buildRTF(){
+  var pageW=16838,pageH=11906,mg=720,cW=pageW-mg*2;
+  var pcts=[.12,.07,.15,.38,.28];
+  var cumX=mg,colX=pcts.map(function(p){cumX+=Math.round(p*cW);return cumX;});
+  var ct=';\\red31\\green78\\blue121;\\red198\\green239\\blue206;\\red255\\green235\\blue156;\\red252\\green228\\blue214;\\red226\\green239\\blue218;\\red218\\green238\\blue243;\\red238\\green242\\blue247;\\red255\\green255\\blue255;';
+
+  function row(cells,bgs,isHdr){
+    var def='\\trowd\\trleft'+mg+'\\trgaph115';
+    cells.forEach(function(_,i){
+      var bg=Array.isArray(bgs)?bgs[i]:bgs;
+      def+='\\clcbpat'+bg+'\\clbrdrt\\brdrw8\\brdrs\\clbrdrl\\brdrw8\\brdrs\\clbrdrb\\brdrw8\\brdrs\\clbrdrr\\brdrw8\\brdrs\\cellx'+colX[i];
+    });
+    var content=cells.map(function(c){
+      var b=isHdr?'{\\b ':'';var be=isHdr?'}':'';
+      var cf=isHdr?'{\\cf8 ':'{\\cf0 ';
+      return'\\pard\\intbl\\fs18\\f0 '+cf+b+escRTF(c.text||'')+be+'}\\cell';
+    }).join('\n');
+    return def+'\n'+content+'\n\\row\n';
+  }
+
+  var tbl=row([{text:'OBJECTIVE'},{text:'TIME'},{text:'TASK / ACTIVITY'},{text:'PROCESS'},{text:'PREPARATION'}],1,true);
+  var curBg=8;
+  parsed.rows.forEach(function(r){
+    if(r.objective&&r.objective.length>3){var c=getColor(r.objective);if(c)curBg=rtfBg[c]||8;}
+    tbl+=row([{text:r.objective||''},{text:r.time||''},{text:r.task||''},{text:r.process||''},{text:r.preparation||''}],[curBg,curBg,curBg,8,8],false);
+  });
+
+  return'{\\rtf1\\ansi\\deff0\n{\\fonttbl{\\f0\\froman\\fcharset0 Arial;}}\n{\\colortbl ;'+ct+'}\n'+
+    '\\paperw'+pageW+'\\paperh'+pageH+'\\lndscpsxn\n\\margl'+mg+'\\margr'+mg+'\\margt'+mg+'\\margb'+mg+'\n'+
+    '{\\pard\\f0\\fs28\\b\\cf1 AGENDA PROCESS \\emdash Appendix 3\\b0\\par}\n'+
+    '{\\pard\\f0\\fs18\\b\\cf1 OVERALL AIM: \\b0\\cf0 '+escRTF(parsed.aim)+'\\par}\n\\pard\\par\n'+
+    tbl+
+    '{\\pard\\f0\\fs16\\i Designed using APD v1.0. Facilitation \\emdash Develop Your Expertise, Tony Mann (APMG, 2025).\\par}\n}';
+}
+
+function triggerDownload(blob,fn){
+  var url=URL.createObjectURL(blob);
+  var a=document.createElement('a');a.href=url;a.download=fn;
+  document.body.appendChild(a);a.click();document.body.removeChild(a);
+  setTimeout(function(){URL.revokeObjectURL(url);},2000);
+}
+
+function doDownload(){
+  document.getElementById('l2').classList.add('vis');setSt('st2','','');
+  setTimeout(function(){
+    try{
+      var rtf=buildRTF();
+      var blob=new Blob([rtf],{type:'application/rtf'});
+      lastBlob=blob;lastFN='APD_Agenda_Process_Appendix3.rtf';
+      triggerDownload(blob,lastFN);
+      document.getElementById('dlBtn').onclick=function(){triggerDownload(lastBlob,lastFN);};
+      document.getElementById('l2').classList.remove('vis');
+      showPanel(3);
+    }catch(e){
+      document.getElementById('l2').classList.remove('vis');
+      setSt('st2','err','Error generating document: '+e.message);
+    }
+  },500);
+}
+
+function loadSample(){
+document.getElementById('rawInput').value='APPENDIX-3 \u2014 AGENDA PROCESS DESIGN\n\nOverall Aim: To understand the causes of behavioural issues in the school and agree effective actions to reduce them.\n\n| Objective | Time | Task/Activity | Process | Preparation |\n|---|---|---|---|---|\n| SESSION OPENING | 20 mins | | | |\n| | 20 mins | Welcome and orientation | Step 1 (One to All) \u2014 Headteacher welcomes all participants by name. Presents Aim and Objectives. Hands over to Facilitator. Step 2 (One to All) \u2014 Facilitator establishes working framework and explains constituency colour coding. | Miro board pre-built. Colour legend: Red = Pupils, Blue = Teachers, Green = HoDs, Yellow = Headteacher. Safeguarding escalation route agreed privately. |\n| O1 \u2014 To establish a shared understanding of the behavioural issues | 20 mins | | | |\n| | 20 mins | Task 1a \u2014 Surface key observations from the six case studies | Step 1 (All) \u2014 10 mins. Tool: Braindumping. Each participant reads their case study and adds observations in constituency colour. One observation per sticky. No discussion. Step 2 (All to One) \u2014 10 mins. Participants post stickies to shared board. | Frame title: Case Study Observations. Four constituency zones. Rules: One observation per sticky. No discussion. Six case studies distributed in advance. |\n| O2 \u2014 To identify the underlying causes of these behavioural issues | 55 mins | | | |\n| | 20 mins | Task 2a \u2014 Identify patterns and themes | Step 3 (Group) \u2014 12 mins. Tool: Clustering. Mixed sub-groups cluster stickies by similarity. Step 4 (All to One) \u2014 8 mins. Share cluster headings. SPO framing at transition. | Clustering Board. Frame title: Patterns and Themes. Rules: Move items not meanings. Breakout rooms pre-assigned. |\n| | 35 mins | Task 2b \u2014 Distinguish causes from symptoms | Step 5 (Group) \u2014 20 mins. Tool: SCA Simple. Sub-groups identify Symptoms and Causes. Actions column left blank. Step 6 (All to One) \u2014 15 mins. Share Causes column. SPO framing. | SCA Board. Three vertical lanes. Rules: Symptoms are observations. Causes must precede actions. |\n| O3 \u2014 To determine feasible actions to reduce behavioural issues | 80 mins | | | |\n| | 35 mins | Task 3a \u2014 Evaluate causes for significance and addressability | Step 7 (All) \u2014 Tool: Dots. Constituency colours in three sizes. Silent individual work. Step 8 (All to One) \u2014 SPO explanation. Pupils first. Step 9 \u2014 Tool: Four Box Model. Y = Significance, X = Addressability. | Dots board with constituency colours and three sizes. Four Box board with axes agreed before use. |\n| | 20 mins | Task 3b \u2014 Assign ownership for each agreed action | Step 10 (All to One) \u2014 Tool: Action Planning. Named owner, realistic timeline, expected effect for each action. Invalid rule: no action without owner AND timeline. | Action Planning Board. Four columns: Action, Owner, Timeline, Expected Effect. |\n| Process Review | 15 mins | | | |\n| | 15 mins | Process Iceberg Review | Step 11 (All to One) \u2014 Tool: Process Iceberg Review Model. What Helped and What Hindered. Pupils first. START/STOP commitments agreed. | Review Board. Two columns: What Helped and What Hindered. Note to Headteacher: non-negotiable step. Do not close early. |';
+}
+</script>
+</body>
+</html>
